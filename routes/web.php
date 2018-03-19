@@ -25,3 +25,7 @@ Route::post('/posts/{post}/comments', "CommentsController@store");
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin'], function() {
+    Route::get('/', 'HomeController@index');
+    Route::get('article', 'ArticleController@index');
+});
