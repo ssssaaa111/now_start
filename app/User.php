@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'github_id', 'avatar',
     ];
 
     /**
@@ -26,4 +26,26 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+
+    }
+    
+    public function publish(Post $post)
+    {
+        $this->posts()->save($post);
+    }
+
+    public function files()
+    {
+        return $this->hasMany(Uploadingfile::class);
+    }
+
+    public function uploading(Uploadingfile $uploadingfile)
+    {
+        $this->files()->save($uploadingfile);
+    }
+
 }

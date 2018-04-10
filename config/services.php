@@ -35,4 +35,17 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'github' => [
+        'client_id' => 'e7ced1b2337af00852be',         // Your GitHub Client ID
+        'client_secret' => 'd821611c383a219f07c94a7fbb138123de4fe416', // Your GitHub Client Secret
+        'redirect' => 'https://gobaby.com/login/github/callback',
+    ],
+
+    'weixin' => [
+        'client_id' => 'wx55b90cf5280781c1',
+        'client_secret' => '60285159c5484973ac6ae8b602e2cd8f',
+        'redirect' => env('WEIXIN_REDIRECT_URI'),
+    ],
+
+
 ];

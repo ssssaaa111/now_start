@@ -60,4 +60,10 @@ class Post extends Model
 
     }
 
+    public function files()
+    {
+        return $this->hasMany(Uploadingfile::class);
+    }
+
+
 }

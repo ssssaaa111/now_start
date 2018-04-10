@@ -25,18 +25,34 @@
         <hr>
         <div class="comments">
             <ul class="list-group">
-                {{--@foreach($post->comments as $comment)--}}
-                    {{--<li class="list-group-item">--}}
-                        {{--<strong>--}}
-                            {{--{{$comment->created_at->diffForHumans()}}: &nbsp;--}}
-                        {{--</strong>--}}
-                        {{--{{$comment->body}}--}}
-                    {{--</li>--}}
-                {{--@endforeach--}}
+                @foreach($post->comments as $comment)
+                    <li class="list-group-item">
+                        <strong>
+                            {{$comment->created_at->diffForHumans()}}: &nbsp;
+                        </strong>
+                        {{$comment->body}}
+                    </li>
+                @endforeach
             </ul>
         </div>
 
         <hr>
+        <form action="/posts/upload/{{$post->id}}" method="POST" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <div class="form-group">
+                <label for="avatar">File input</label>
+                <input type="file" id="avatar" name="avatar">
+            </div>
+            <button type="submit" class="btn btn-primary">确认上传</button>
+        </form>
+
+        <hr>
+        @foreach($files as $file)
+        <a href="{{$file->url}}">
+            <button type="submit" class="btn btn-danger">{{$file->filename}}</button>
+        </a>
+        <hr>
+        @endforeach
         {{--Add  a comment--}}
         {{--@can('edit the forum')--}}
             <div class="card">
@@ -45,15 +61,13 @@
                         {{csrf_field()}}
                         <div class="form-group">
                         <textarea name="body" class="form-control" placeholder="You comments here!" required>
-
                         </textarea>
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">去付款</button>
+                            <button type="submit" class="btn btn-primary">提交评论</button>
                         </div>
                     </form>
-
                     @include('layouts.errors')
                 </div>
             </div>

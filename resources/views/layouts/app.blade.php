@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="/css/base.css" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -53,8 +54,13 @@
 
                                 <ul class="dropdown-menu">
                                     <li>
+                                        <a href="{{ route('article') }}">
+                                            我的课程
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
+                                           onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             退出
                                         </a>
