@@ -7,9 +7,9 @@
 
         <h1>Recent Readings</h1>
         <hr>
-        @foreach($inProgress as $post)
-            @include('posts.post')
-        @endforeach
+        {{--@foreach($inProgress as $post)--}}
+            {{--@include('posts.post')--}}
+        {{--@endforeach--}}
 
         <h1>All Posts</h1>
         <hr>
