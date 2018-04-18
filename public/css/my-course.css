@@ -1,0 +1,84 @@
+.page, .page-mycourse{
+    background: #eee;
+}
+.page-mycourse ul li a{
+    color: #000;
+    display: inline-block;
+}
+.page-mycourse header{
+    height: 2rem;
+    font-size: .75rem;
+    text-align: center;
+    line-height: 2rem;
+    background-color: #fff;
+}
+.page-mycourse header .icon-fanhui{
+    position: absolute;
+    left: 0;
+}
+.page-mycourse .latest_release .card{
+    box-shadow: none;
+}
+.page-mycourse .latest_release .list-block .item-inner:after{
+    display: none;
+}
+.page-mycourse .list-block ul{
+    background: #eee;
+}
+.page-mycourse .list-block li{
+    background: #fff;
+}
+.page-mycourse .latest_release .list-block .item-inner .icon-diqiu{
+    font-size: .65rem;
+    margin-left: .35rem;
+    color: #a4a4a4;
+}
+.page-mycourse .latest_release .list-block .item-inner .icon-xing:before{
+    color: #ffc425;
+    font-size: .7rem;
+    margin-right: .3rem;
+    vertical-align: top;
+}
+.page-mycourse .latest_release .list-block .item-inner p{
+    display: inline-block;
+}
+.page-mycourse .latest_release .list-block .item-inner .item-subtitle .back-1e{
+    padding: 1px 3px;
+    background: #1ed2ad;
+    color: #fff;
+    border-radius: 5px;
+    width: auto;
+    height: auto;
+}
+.page-mycourse .latest_release .list-block .item-content{
+    border: 1px solid #e7e7e7;
+    margin-bottom: .5rem;
+    border-radius: 5px;
+    padding-left: 0;
+}
+.page-mycourse .latest_release .list-block.media-list .item-media{
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-left: .5rem;
+    background: url("../images/index-teacher.png") no-repeat center;
+    background-size: 100%;
+    border-radius: 50%;
+}
+.page-mycourse .latest_release .list-block.media-list .item-title{
+    font-size: .6rem;
+}
+.page-mycourse .font-55col{
+    font-size: .55rem;
+    color: #a8abb0;
+}
+.page-mycourse .latest_release .list-block .item-inner .font-5{
+    font-size: .5rem;
+    display: block;
+}
+.page-mycourse .latest_release .list-block .item-inner .border-1e{
+    color: #1ed2ad;
+    border: 1px solid #1ed2ad;
+    border-radius: 5px;
+    font-size: .6rem;
+    padding: 1px 3px;
+}

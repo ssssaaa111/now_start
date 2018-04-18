@@ -1,0 +1,58 @@
+.page-my .list-block ul:before{
+    display: none;
+}
+.page-my .list-block ul:after{
+    display: none;
+}
+.page-my .list-block .item-inner:after{
+    display: none;
+}
+.page-my .list-block li{
+    border-bottom: 1px solid #eee;
+}
+.page-my .list-block {
+    margin: 0;
+}
+.page-my .list-block .item-media .head_por{
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 2.5rem;
+}
+.page-my .list-block{
+    font-size: .8rem;
+}
+.page-my .list-block .item-title .color-bbb{
+    font-size: .6rem;
+    color: #bbb;
+}
+.page-my .list-block .my_list{
+    font-size: 0;
+}
+.page-my .list-block .my_list  div{
+    width: 33.33%;
+    text-align: center;
+    display: inline-block;
+    font-size: .7rem;
+    border-bottom: .5rem solid #eee;
+    padding-bottom: .5rem;
+}
+.page-my .list-block .my_list  div a{
+    color: #000;
+    display: inline-block;
+    width: 100%;
+}
+.page-my ul li a{
+    color: #000;
+    display: -webkit-inline-box;
+    width: 100%;
+    height: 100%;
+}
+.page-my .list-block .item-link .item-inner{
+    font-size: .7rem;
+}
+.page-my .list-block .border-bo{
+    border-bottom: .5rem solid #eee;
+}
+.page, .page-my{
+    background: #eee;
+}

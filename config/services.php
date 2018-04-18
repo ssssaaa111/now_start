@@ -38,7 +38,7 @@ return [
     'github' => [
         'client_id' => 'e7ced1b2337af00852be',         // Your GitHub Client ID
         'client_secret' => 'd821611c383a219f07c94a7fbb138123de4fe416', // Your GitHub Client Secret
-        'redirect' => 'https://gobaby.com/login/github/callback',
+        'redirect' => 'https://charminglovesami.club/login/github/callback',
     ],
 
     'weixin' => [
