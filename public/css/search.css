@@ -1,0 +1,215 @@
+.page-seatea header{
+    padding: .5rem 0 .2rem 0;
+    border-bottom: 1px solid #e7e7e7;
+    position: relative;
+}
+.page-seatea header .tabs{
+    height: 2rem;
+    width: 100%;
+    position: absolute;
+    bottom: -2.01rem;
+    z-index: 100;
+    background: #fff;
+    border-top: 1px solid #eee;
+    box-shadow: 0 3px 5px #eee;
+}
+.page-seatea header .tabs li{
+    font-size: .6rem;
+    background: #e7e7e7;
+    padding: 2px 4px;
+    width: auto;
+    margin-right: .75rem;
+    border-radius: 3px;
+}
+.page-seatea header form{
+    display: inline-block;
+    height: 1.5rem;
+    vertical-align: top;
+    margin-left: .75rem;
+    width: 80%;
+    position: relative;
+}
+.page-seatea header .icon-fanhui{
+    line-height: 1.5rem;
+}
+.page-seatea header form .sear-text{
+    height: 100%;
+    width: 100%;
+    border: 1px solid #e7e7e7;
+    border-radius: 1rem;
+    padding-left: .4rem;
+}
+.page-seatea header form .sear-sum{
+    position: absolute;
+    right: .5rem;
+    background: url("../images/sear.png") no-repeat center;
+    height: 100%;
+    width: 1rem;
+    top: 0;
+}
+.page-seatea header  ul{
+    font-size: 0;
+    padding:  0 .5rem;
+    margin-top: .2rem;
+}
+.page-seatea header  ul li{
+    font-size: .7rem;
+    width: 25%;
+    display: inline-block;
+    text-align: center;
+    line-height: 1rem;
+}
+.page-seatea header .sele-ul .sele-avt{
+    color: #1ed2ad;
+}
+.page-seatea header  ul li span{
+    font-size: .45rem;
+}
+.page-seatea .latest_release .card{
+    box-shadow: none;
+}
+.page-seatea .latest_release .list-block .item-inner:after{
+    display: none;
+}
+.page-seatea .latest_release .list-block .item-inner .icon-diqiu{
+    font-size: .65rem;
+    margin-left: .35rem;
+    color: #a4a4a4;
+}
+.page-seatea .latest_release .list-block .item-inner .icon-xing:before{
+    color: #ffc425;
+    font-size: .7rem;
+    margin-right: .3rem;
+    vertical-align: top;
+}
+.page-seatea .latest_release .list-block .item-inner p{
+    display: inline-block;
+}
+.page-seatea .latest_release .list-block .item-inner .item-subtitle .back-1e{
+    padding: 1px 3px;
+    background: #1ed2ad;
+    color: #fff;
+    border-radius: 5px;
+    width: auto;
+    height: auto;
+}
+.page-seatea .latest_release .list-block .item-content{
+    border: 1px solid #e7e7e7;
+    margin-bottom: .5rem;
+    border-radius: 5px;
+    padding-left: 0;
+}
+.page-seatea .latest_release .list-block.media-list .item-media{
+   width: 2.5rem;
+    height: 2.5rem;
+    margin-left: .5rem;
+    background: url("../images/index-teacher.png") no-repeat center;
+    background-size: 100%;
+    border-radius: 50%;
+}
+.page-seatea .latest_release .list-block.media-list .item-title{
+    font-size: .6rem;
+}
+.page-seatea .font-55col{
+    font-size: .55rem;
+    color: #a8abb0;
+}
+.page-seatea .buttons-tab:after {
+    display: none;
+}
+.page-seatea .buttons-tab .button.active{
+    color: #1ed2ad;
+    border: none;
+    z-index: 100;
+}
+.page-seatea .buttons-tab .button.active .icon-down:before{
+    content: "\e612";
+}
+.page-seatea .buttons-tab .button{
+    font-size: .7rem;
+    height: 1.5rem;
+}
+.page-seatea .content-block{
+    margin: 0;
+    line-height: 2rem;
+}
+.page-seatea .buttons-tab .button .icon-down{
+    font-size: .55rem;
+}
+.page-seatea .buttons-tab .button .icon-up{
+    font-size: .55rem;
+}
+.page-seatea .latest_release .list-block.media-list .item-title .backg-1e{
+    background: #1ed2ad;
+    padding: 1px 5px;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.page-data header{
+    padding: .5rem 0 .2rem 0;
+    border-bottom: 1px solid #e7e7e7;
+    position: relative;
+}
+.page-data header .tabs{
+    height: 2rem;
+    width: 100%;
+    position: absolute;
+    bottom: -2.01rem;
+    z-index: 100;
+    background: #fff;
+    border-top: 1px solid #eee;
+    box-shadow: 0 3px 5px #eee;
+}
+.page-data header .tabs li{
+    font-size: .6rem;
+    background: #e7e7e7;
+    padding: 2px 4px;
+    width: auto;
+    margin-right: .75rem;
+    border-radius: 3px;
+}
+.page-data header form{
+    display: inline-block;
+    height: 1.5rem;
+    vertical-align: top;
+    margin-left: .75rem;
+    width: 80%;
+    position: relative;
+}
+.page-data header .icon-fanhui{
+    line-height: 1.5rem;
+}
+.page-data header form .sear-text{
+    height: 100%;
+    width: 100%;
+    border: 1px solid #e7e7e7;
+    border-radius: 1rem;
+    padding-left: .4rem;
+}
+.page-data header form .sear-sum{
+    position: absolute;
+    right: .5rem;
+    background: url("../images/sear.png") no-repeat center;
+    height: 100%;
+    width: 1rem;
+    top: 0;
+}
+.page-data header  ul{
+    font-size: 0;
+    padding:  0 .5rem;
+    margin-top: .2rem;
+}
+.page-data header  ul li{
+    font-size: .7rem;
+    width: 25%;
+    display: inline-block;
+    text-align: center;
+    line-height: 1rem;
+}
+.page-data header .sele-ul .sele-avt{
+    color: #1ed2ad;
+}
+.page-data header  ul li span{
+    font-size: .45rem;
+}

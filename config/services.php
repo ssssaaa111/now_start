@@ -44,7 +44,9 @@ return [
     'weixin' => [
         'client_id' => 'wx55b90cf5280781c1',
         'client_secret' => '60285159c5484973ac6ae8b602e2cd8f',
-        'redirect' => env('WEIXIN_REDIRECT_URI'),
+        'redirect' => "https://gobaby.com/login/weixin/callback",
+        'auth_base_uri' => 'https://open.weixin.qq.com/connect/qrconnect',
+
     ],
 
 

@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/posts/create', "PostsController@create");
@@ -35,8 +35,10 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 });
 
 Route::get('login/github', 'Auth\LoginController@redirectToProvider');
+Route::get('login/weixin', 'Auth\LoginController@oauth');
 Route::get('logout', 'Auth\LoginController@logout');
 Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('login/weixin/callback', 'Auth\LoginController@callback');
 
 
 

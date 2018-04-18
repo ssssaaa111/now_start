@@ -1,0 +1,268 @@
+.page, .page-details{
+    background: #fff;
+}
+.page-details header{
+    padding: .5rem ;
+}
+.page-details header a{
+    font-size: 1rem;
+    color: #000;
+}
+.page-details header .icon-email{
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+}
+.page-details .details-body{
+    padding: .5rem 5%;
+}
+.page-details .details-body .det-msg {
+    width: 100%;
+    font-size: 0;
+}
+.page-details .details-body .det-msg .det-img {
+    width: 45%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 5px;
+    display: inline-block;
+}
+.page-details .details-body .det-msg ul{
+    width: 48%;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 7%;
+    font-size: .7rem;
+    line-height: 1rem;
+}
+.page-details .details-body .det-msg ul li{
+    padding: 5px;
+    border-bottom: 1px solid #e7e7e7;
+    margin-bottom: .2rem;
+}
+.page-details .details-body .det-msg ul li .iconfont{
+    font-size: 1rem;
+}
+.page-details .details-body .det-js{
+}
+.page-details .details-body .det-js h5{
+    margin-top: .5rem ;
+    line-height: 1rem;
+    font-size: .7rem;
+}
+.page-details .details-body .det-js p{
+    font-size: .6rem;
+    color: #b7b8b7;
+}
+.page-details .details-body .det-js .det-text{
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    width: 100%;
+}
+.page-details .details-body .det-js .det-video{
+    height: 7rem;
+    width: 100%;
+    margin-top: .5rem;
+}
+.page-details .details-body {
+    border-bottom: .5rem solid #eee;
+}
+.page-details .buttons-tab .button{
+    width: 25%;
+}
+.page-details .buttons-tab .button.active{
+    color: #1ed2ad;
+    border-color: #1ed2ad;
+}
+.page-details .content-block{
+    margin: 0;
+    padding: 0 .1rem;
+}
+.page-details .md-show .md-effect-1 .md-content{
+    width: 100%;
+    padding: .5rem 1.5%;
+    border-radius: 5px;
+}
+.page-details  .md-content h5{
+    font-size: .7rem;
+    text-align: center;
+    border-bottom: 1px solid #e7e7e7;
+    line-height: 1.5rem;
+}
+.page-details  .md-content h5 span{
+    float: right;
+    font-size: .65rem;
+    background: #1ed2ad;
+    border-radius: 3px;
+    color: #fff;
+    padding: 1px 7px;
+    line-height: 1rem;
+    position: absolute;
+    right: 1.5%;
+}
+.page-details  .md-content .modal-time{
+    text-align: center;
+    font-size: .7rem;
+    line-height: 2rem;
+    margin-top: .2rem;
+}
+.page-details  .md-content .modal-time a{
+    padding: 5px;
+    border: 1px solid #a8abb0;
+    line-height: 1rem;
+    margin-top: .3rem;
+    border-radius: 5px;
+}
+.page-details  .md-content select{
+    width: 100%;
+    height: 2rem;
+    margin-top: .5rem;
+    border-radius: 5px;
+    padding-left: .5rem;
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+}
+.page-details  .md-content select option{
+    width: 100%;
+}
+.page-release  .md-content .time-list  {
+    padding: 0;
+    margin: 0;
+}
+.page-details  .md-content .time-list ul{
+    font-size: 0;
+    padding: 0;
+    margin: .5rem 0 0 0;
+}
+.page-details  .md-content .time-list ul li{
+    font-size: .6rem;
+    width: 13%;
+    display: inline-block;
+    margin-left: 1%;
+    text-align: center;
+    line-height: 1rem;
+    padding: .4rem 0;
+    position: relative;
+}
+.page-details  .md-content .time-list ul li::before{
+    position: absolute;
+    content: "";
+    height: .3rem;
+    top: 0;
+    width: 100%;
+    background: #1ed2ad;
+}
+.page-details  .md-content .time-list ul li span{
+    width: 100%;
+    display: inline-block;
+}
+.page-details  .md-content .time-list ul li .col-000{
+    color: #000;
+}
+.page-details  .md-content .time-list ul li .marbot-2{
+    margin-bottom: .2rem;
+}
+.page-details  .md-content .time-list ul li .col-faa{
+    color: #faa200;
+}
+.page-details  .md-content .time-list ul li .col-eee{
+    color: #eee;
+}
+.page-details .content-block  ul{
+    padding: 1rem 5%;
+}
+.page-details .content-block  ul li{
+    border-bottom: 1px solid #ddd;
+    padding: .5rem;
+}
+.page-details .content-block  li .dynam-tx{
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.page-details .content-block  li .dynam-body{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: .5rem;
+    width: 80%;
+}
+.page-details .content-block  li .dynam-body .dynam-name{
+    color: #a8abb0;
+    font-size: 1rem;
+}
+.page-details .content-block  li .dynam-body .dynam-text{
+    font-size: .7rem;
+    color: #000;
+    line-height: .9rem;
+    margin: .5rem 0;
+}
+.page-details .content-block  li .dynam-body img{
+    max-width: 70%;
+    max-height: 5.5rem;
+}
+.page-details .content-block  li .dynam-body .dynam-time{
+    line-height: 1rem;
+    font-size: .6rem;
+    color: #a8abb0;
+    margin: .3rem 0;
+}
+.page-details .content-block  li .dynam-body .dynam-time span{
+    display: inline-block;
+    width: 70%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: top;
+}
+.page-details .det-nav{
+    text-align: center;
+    line-height: 2.5rem;
+    background: #1ED2AD;
+    width: 100%;
+    font-size: 1rem;
+    color: #fff;
+}
+.page-details .det-nav a{
+    font-size: 1rem;
+    color: #fff;
+    display: block;
+    line-height: 2.5rem;
+    vertical-align: top;
+    width: 100%;
+}
+.page-details .det-nav .icon-shandian{
+    font-size: 1.5rem;
+    color: #d2bd1e;
+    vertical-align: middle;
+}
+.toast-wrap{
+    opacity: 0;
+    position: fixed;
+    bottom: 40%;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+}
+.toast-msg{
+    background-color: rgba(0,0,0,0.7);
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+.toastAnimate{
+    animation: toastKF 2s;
+}
+@keyframes toastKF{
+    0% {opacity: 0;}
+    25% {opacity: 1; z-index: 9999}
+    50% {opacity: 1; z-index: 9999}
+    75% {opacity: 1; z-index: 9999}
+    100% {opacity: 0; z-index: 0}
+}
+.page-details .actions-modal-button.color-danger, .actions-modal-label.color-danger{
+    color: #1ED2AD;
+}
