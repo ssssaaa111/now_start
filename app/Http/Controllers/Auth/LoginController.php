@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -78,5 +79,22 @@ class LoginController extends Controller
     {
         auth()->logout();
         return redirect('/');
+    }
+
+    public function oauth(Request $request)
+    {
+        return Socialite::with('weixin')->redirect();
+    }
+
+# 微信的回调地址
+    public function callback(Request $request)
+    {
+        $oauthUser = Socialite::with('weixin')->user();
+
+        // 在这里可以获取到用户在微信的资料
+        dd($oauthUser);
+        // 接下来处理相关的业务逻辑
+
+
     }
 }
