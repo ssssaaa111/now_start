@@ -43,7 +43,7 @@
         <header>
             <img src="images/index-logo.png" class="logo">
             <div class="fr text-cen">
-                <a href="login" style="display: block">
+                <a href="login" class="external" style="display: block">
                     <i class="icon iconfont icon-wode"></i>
                     <p>未登录</p>
                 </a>

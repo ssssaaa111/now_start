@@ -49,9 +49,9 @@
                 <a href="login/github" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> Sign
                     in using
                     Github</a>
-                <a href="login/github" class="btn btn-block btn-social btn-weibo btn-flat"><i class="fa fa-weibo"></i> Sign
+                <a href="login/weixin" class="btn btn-block btn-social btn-wechat btn-flat"><i class="fa fa-wechat"></i> Sign
                     in using
-                    Google+</a>
+                    WeChat</a>
             </div>
             <!-- /.social-auth-links -->
 
