@@ -72,6 +72,7 @@ class LoginController extends Controller
             'password'=>'123456',
         ])->save();
         return $user;
+        
     }
 
     private function findOrCreateWechatUser($wechat_user)
