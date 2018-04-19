@@ -64,10 +64,10 @@
 
     <div class="social-auth-links text-center">
       <p>- OR -</p>
-      <a href="login/github" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using
-        Facebook</a>
-      <a href="login/github" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
-        Google+</a>
+      <a href="login/github" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> Sign up using
+        Github</a>
+      <a href="login/weixin" class="btn btn-block btn-social btn-wechat btn-flat"><i class="fa fa-wechat"></i> Sign up using
+        Wechat</a>
     </div>
 
     <a href="login" class="text-center">I already have a membership</a>

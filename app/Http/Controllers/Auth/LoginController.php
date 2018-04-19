@@ -81,7 +81,7 @@ class LoginController extends Controller
         $user->fill([
             'name'=>$wechat_user->nickname,
             'avatar'=>$wechat_user->avatar,
-            'email'=>empty($wechat_user->email)?$wechat_user->id : $wechat_user->email,
+            'email'=>empty($wechat_user->email)?$wechat_user->id.str_random(10) : $wechat_user->email,
             'password'=>'123456',
         ])->save();
         return $user;
