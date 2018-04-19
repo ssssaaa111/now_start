@@ -58,7 +58,6 @@ class LoginController extends Controller
         auth()->login($user);
         session()->flash("message", 'thanks for sign up');
         return redirect('/posts');
-        // $user->token;
     }
 
     private function findOrCreateGithubUser($github_user)
@@ -75,6 +74,19 @@ class LoginController extends Controller
         return $user;
     }
 
+    private function findOrCreateWechatUser($wechat_user)
+    {
+        $user = User::firstOrNew(['weixin_id' =>$wechat_user->id]);
+        if($user->exits) return $user;
+        $user->fill([
+            'name'=>$wechat_user->nickname,
+            'avatar'=>$wechat_user->avatar,
+            'email'=>empty($wechat_user->email)?$wechat_user->id : $wechat_user->email,
+            'password'=>'123456',
+        ])->save();
+        return $user;
+    }
+
     public function logout()
     {
         auth()->logout();
@@ -86,15 +98,13 @@ class LoginController extends Controller
         return Socialite::with('weixin')->redirect();
     }
 
-# 微信的回调地址
     public function callback(Request $request)
     {
-        $oauthUser = Socialite::with('weixin')->user();
-
-        // 在这里可以获取到用户在微信的资料
-        dd($oauthUser);
-        // 接下来处理相关的业务逻辑
-
-
+        $user = $this->findOrCreateWechatUser(
+            Socialite::with('weixin')->user()
+        );
+        auth()->login($user);
+        session()->flash("message", 'thanks for sign up');
+        return redirect('/posts');
     }
 }

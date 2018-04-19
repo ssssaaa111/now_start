@@ -58,7 +58,7 @@
                     <h4>LOGIN FORM</h4>
                     <form class="ten">
                         <div class="fb"><a href="#"><span> </span> <lable>Sign in with QQ</lable><div class="clear"></div></a></div>
-                        <div class="fb fb-wx"><a href="#"><span> </span> <lable>Sign in with WeChat</lable><div class="clear"></div></a></div>
+                        <div class="fb fb-wx"><a href='login/weixin'><span> </span> <lable>Sign in with WeChat</lable><div class="clear"></div></a></div>
                         <p>Or<p>
                         <li class="cream">
                             <input type="text" autofocus class="text" value="Username" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Username';}" ><a href="#" class=" icon10 user10"></a>
