@@ -12,8 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('classes.index');
 });
+
+Route::get('/release', function () {
+    return view('classes.release');
+});
+
+Route::get('/news', function () {
+    return view('classes.news');
+});
+
+Route::get('/my', "MyController@index");
 
 Route::get('/posts/create', "PostsController@create");
 Route::get('/posts', "PostsController@index")->name('home');
