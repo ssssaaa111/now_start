@@ -70,4 +70,6 @@
 
 @section('foot')
     <script src="js/index.js"></script>
+    <script src="js/release.js"></script>
+
 @endsection

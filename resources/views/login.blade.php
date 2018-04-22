@@ -1,4 +1,4 @@
-@extends('layouts.login')
+@extends('layouts1.login')
 
 @section('content')
     <h4>LOGIN 牛蛙</h4>

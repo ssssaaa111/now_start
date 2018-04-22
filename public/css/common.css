@@ -183,3 +183,9 @@ a:link,a:active,a:visited,a:hover {
 .page .bar{
     background-color: #fff;
 }
+
+.words-length{
+    text-overflow: ellipsis;
+    width: 90%;
+    overflow: hidden;
+}

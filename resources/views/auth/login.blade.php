@@ -44,6 +44,8 @@
                 </div>
             </form>
 
+            @include('layouts.errors')
+
             <div class="social-auth-links text-center">
                 <p>- OR -</p>
                 <a href="login/github" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> Sign

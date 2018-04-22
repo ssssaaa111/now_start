@@ -3,7 +3,7 @@
         <span class="iconfont icon-maozi icon"></span>
         <span class="tab-label">首页</span>
     </a>
-    <a class="tab-item external" href="/release">
+    <a class="tab-item external" href="/posts">
         <span class="icon icon-paperplane iconfont"></span>
         <span class="tab-label">发布</span>
     </a>

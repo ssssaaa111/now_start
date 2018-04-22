@@ -225,6 +225,7 @@
     line-height: 1rem;
     padding: .4rem 0;
     position: relative;
+    vertical-align: top;
 }
 .page-release .md-modal .md-content .time-list ul li::before{
     position: absolute;
@@ -249,4 +250,10 @@
 }
 .page-release .md-modal .md-content .time-list ul li .col-eee{
     color: #eee;
+}
+.page-release .md-modal .md-content .time-list  {
+    padding: 0;
+    margin: 0;
+    height: 10rem;
+    overflow: auto;
 }

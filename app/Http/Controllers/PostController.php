@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Http\Response;
+use DateTimeZone;
 
 
 class PostsController extends Controller
@@ -21,6 +22,7 @@ class PostsController extends Controller
     public function index()
     {
         $user = auth()->id();
+        $tz = $this->getUserTimeZone();
         $inProgressIds = Redis::zrevrange("user.{$user}.inProgress", 0, 2);
         $inProgress = collect($inProgressIds)->map(function ($id) {
             return Post::find($id);
@@ -29,23 +31,30 @@ class PostsController extends Controller
         $posts = Post::latest()
             ->filter(request(['month', 'year']))
             ->get();
-        return view('posts.index', compact('posts', 'inProgress'));
+        foreach ($posts as &$post) {
+            if (!empty($post->ext)) {
+                $post->ext = json_decode($post->ext, true);
+            }
+        }
+        $tzlist = DateTimeZone::listIdentifiers(DateTimeZone::ALL);
+        return view('classes.release', compact('posts', 'inProgress', 'tzlist', 'tz'));
     }
 
     public function show(Post $post)
     {
 
-        /*       if(auth()->user()->can('update-post', $post)){
-                   return 111111;
-               }
-               $this->authorize('update-post', $post);
-               if(Gate::denies('show-post', $post)){
-                   abort('403', 'Sorry, not sorry');
-               }
-               $user = auth()->user()->id;
-               Redis::zadd("user.{$user}.inProgress", time(), $post->id);*/
+//        if (auth()->user()->can('update-post', $post)) {
+//            return 111111;
+//        }
+//        $this->authorize('update-post', $post);
+//        if (Gate::denies('show-post', $post)) {
+//            abort('403', 'Sorry, not sorry');
+//        }
+
+        $user = $post->user->id;
+        Redis::zadd("user.{$user}.inProgress", time(), $post->id);
         $files = $post->files;
-        return view('posts.show', compact('post', 'files'));
+        return view('classes.show', compact('post', 'files'));
     }
 
     public function create()
@@ -60,7 +69,7 @@ class PostsController extends Controller
             'title' => 'required',
             'body' => 'required',
         ]);
-        session()->flash('message','your post has been published');
+        session()->flash('message', 'your post has been published');
         auth()->user()->publish(
             new Post(request(['title', 'body']))
         );
@@ -97,8 +106,28 @@ class PostsController extends Controller
         auth()->user()->uploading(new Uploadingfile([
             'post_id' => $post->id,
             'filename' => $file_name,
-            'url' => asset('download/' . $post->id).'?filename=' . $file_name
+            'url' => asset('download/' . $post->id) . '?filename=' . $file_name
         ]));
         return back();
+    }
+
+    /**
+     * @return DateTimeZone|string
+     */
+    public function getUserTimeZone()
+    {
+        $ip = $_SERVER['REMOTE_ADDR']; // means we got user's IP address
+        $json = file_get_contents('http://ip-api.com/json/' . $ip); // this one service we gonna use to obtain timezone by IP
+// maybe it's good to add some checks (if/else you've got an answer and if json could be decoded, etc.)
+        $ipData = json_decode($json, true);
+        if ($ipData['timezone']) {
+            $tz = new DateTimeZone($ipData['timezone']);
+            $now = new \DateTime( 'now', $tz); // DateTime object corellated to user's timezone
+            $tz = $ipData['timezone'];
+        } else {
+            $now = new \DateTime();
+            $tz = "UTC";
+        }
+        return $tz;
     }
 }

@@ -32,8 +32,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="https://g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
     <link rel="stylesheet" href="https://g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
-    <link rel="stylesheet" href="css/common.css">
-    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <link rel="stylesheet" href="/css/common.css">
+    {{--<script src="https://code.jquery.com/jquery-latest.js"></script>--}}
     @yield('head')
 
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_618936_fheok2d376d5nrk9.css">

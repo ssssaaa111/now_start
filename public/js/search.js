@@ -12,7 +12,6 @@ $(function( ){
         if($(this).attr('class')==='tab-link button active'){
              $('.tabs').hide();
              sele = 1;
-             console.log('1');
             $('.sele-ul .active').attr('class','tab-link button');
         }else {
             $('.tabs').show();

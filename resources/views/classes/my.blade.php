@@ -57,10 +57,10 @@
                     </a>
                 </li>
                 <li class="item-content item-link border-bo">
-                    <a>
+                    <a class="external" href="/logout">
                         <div class="item-media"><i class="icon icon-f7"></i></div>
                         <div class="item-inner">
-                            <div class="item-title">邀请好友</div>
+                            <div class="item-title">退出登录</div>
                             <div class="item-after"></div>
                         </div>
                     </a>

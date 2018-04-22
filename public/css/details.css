@@ -53,14 +53,14 @@
     font-size: .6rem;
     color: #b7b8b7;
 }
-.page-details .details-body .det-js .det-text{
-    overflow : hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    width: 100%;
-}
+/*.page-details .details-body .det-js .det-text{*/
+    /*overflow : hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*display: -webkit-box;*/
+    /*-webkit-line-clamp: 3;*/
+    /*-webkit-box-orient: vertical;*/
+    /*width: 100%;*/
+/*}*/
 .page-details .details-body .det-js .det-video{
     height: 7rem;
     width: 100%;
