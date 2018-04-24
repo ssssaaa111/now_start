@@ -17,7 +17,32 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'password' => bcrypt(str_random(10)), // secret
         'remember_token' => str_random(10),
     ];
 });
+
+
+$factory->define(App\Appointment::class, function (Faker $faker) {
+    $carbon = new Carbon\Carbon('24.04.2018 00:00');
+    $carbon->addDays(random_int(0,20));
+    $carbon->addHours(random_int(0,23));
+    return [
+        //'publisher_id' => factory(App\User::class)->create()->id,
+        'publisher_id' => 36,
+        'start_time' => $carbon->format('Y-m-d H:i:s'), // secret
+    ];
+});
+
+$factory->define(App\Post::class, function (Faker $faker) {
+    $carbon = new Carbon\Carbon('24.04.2018 00:00');
+    $carbon->addDays(random_int(0,20));
+    $carbon->addHours(random_int(0,23));
+    return [
+        //'publisher_id' => factory(App\User::class)->create()->id,
+        'publisher_id' => 36,
+        'start_time' => $carbon->format('Y-m-d H:i:s'), // secret
+    ];
+});
+
+

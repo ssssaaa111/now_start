@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Appointment;
+use Gate;
 use Illuminate\Http\Request;
 
 /**
@@ -40,7 +42,7 @@ class AppointmentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -60,18 +62,40 @@ class AppointmentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        auth()->loginUsingId(1);
+
+        $appointments = Appointment::findOrFail($id);
+
+        //E1
+        /*if (Gate::denies('update-post', $appoints)) {
+            abort(403, "sorry, bad request???");
+        }*/
+
+        //E2
+        //$this->authorize('update-post', $appoints);
+
+        //E3
+
+        /*if (auth()->user()->can('update-post', $appointments)){
+            dd(111);
+        }
+        else{
+            dd($appointments);
+        }*/
+
+        return view('test', compact('appointments'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -82,19 +106,24 @@ class AppointmentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Appointment $appointment
+     * @return bool
      */
-    public function update(Request $request, $id)
+    public function update(Appointment $appointment)
     {
-        //
+        if ($appointment->user_id == 0) {
+            $appointment->user_id = auth()->id();
+            $response = $appointment->save();
+            return response()->json($response);
+        }else{
+            return response()->json(false);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

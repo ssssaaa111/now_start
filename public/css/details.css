@@ -146,6 +146,7 @@
     line-height: 1rem;
     padding: .4rem 0;
     position: relative;
+    vertical-align: top;
 }
 .page-details  .md-content .time-list ul li::before{
     position: absolute;

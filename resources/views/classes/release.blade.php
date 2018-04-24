@@ -286,7 +286,8 @@
                             <span class="col-eee">12:00</span>
                         </li>
                         <li class="day-02">
-                            <span class="col-000">星期一</span>
+                            <span class="co
+                            l-000">星期一</span>
                             <span class="col-000 marbot-2 month_now">9</span>
                             <span class="col-faa">12:00</span>
                             <span>12:00</span>

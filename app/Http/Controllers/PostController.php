@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Uploadingfile;
+use App\Appointment;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Http\Response;
 use DateTimeZone;
+use Carbon\Carbon;
 
 
 class PostsController extends Controller
@@ -24,6 +26,7 @@ class PostsController extends Controller
         $user = auth()->id();
         $tz = $this->getUserTimeZone();
         $inProgressIds = Redis::zrevrange("user.{$user}.inProgress", 0, 2);
+
         $inProgress = collect($inProgressIds)->map(function ($id) {
             return Post::find($id);
         });
@@ -37,7 +40,7 @@ class PostsController extends Controller
             }
         }
         $tzlist = DateTimeZone::listIdentifiers(DateTimeZone::ALL);
-        return view('classes.release', compact('posts', 'inProgress', 'tzlist', 'tz'));
+        return view('classes.release', compact('posts', 'inProgress', 'tzlist', 'tz', 'weekMap'));
     }
 
     public function show(Post $post)
@@ -50,12 +53,41 @@ class PostsController extends Controller
 //        if (Gate::denies('show-post', $post)) {
 //            abort('403', 'Sorry, not sorry');
 //        }
-
+        $weekMap = [
+            0 => '星期天',
+            1 => '星期一',
+            2 => '星期二',
+            3 => '星期三',
+            4 => '星期四',
+            5 => '星期五',
+            6 => '星期六',
+        ];
+        $time_zone = $this->getUserTimeZone();
+        $test = $this->getAppointmentsTable($post);
+        $present_data = array();
+        foreach ($test as $a){
+            $user_id = $a['user_id'];
+            $id = $a['id'];
+            $a = $a['start_time'];
+            $a = static::timeZoneTransfer($a, $time_zone);
+            $weekday = $a->dayOfWeek;
+            $present_data[$weekday][] = array(
+                'start_time'=>$a,
+                'user_id'=>$user_id,
+                'id'=>$id
+            );
+        }
+        $day = $this->getDays($time_zone);
+        $weekDay = $this->getWeekDays($time_zone);
+        $today = $this->getToday($time_zone);
         $user = $post->user->id;
         Redis::zadd("user.{$user}.inProgress", time(), $post->id);
         $files = $post->files;
-        return view('classes.show', compact('post', 'files'));
+        return view('classes.show', compact('post', 'files', 'present_data', 'weekMap', 'day','weekDay', 'time_zone','today'));
     }
+
+
+
 
     public function create()
     {
@@ -122,12 +154,71 @@ class PostsController extends Controller
         $ipData = json_decode($json, true);
         if ($ipData['timezone']) {
             $tz = new DateTimeZone($ipData['timezone']);
-            $now = new \DateTime( 'now', $tz); // DateTime object corellated to user's timezone
+            //$now = new \DateTime('now', $tz); // DateTime object corellated to user's timezone
             $tz = $ipData['timezone'];
         } else {
-            $now = new \DateTime();
+            //$now = new \DateTime();
             $tz = "UTC";
         }
         return $tz;
+    }
+
+    public function getAppointmentsTable(Post $post)
+    {
+        //当地时间
+        $carbon = new \Carbon\Carbon();
+        $start_time = $carbon->format('Y-m-d') . ' 00:00:00';
+        $end_time = $carbon->addDays(7)->format('Y-m-d') . ' 00:00:00';
+
+        $ap = Appointment::where('publisher_id', $post->id)
+            ->where('start_time', '>=', $start_time)
+            ->where('start_time', '<', $end_time)
+            ->select('user_id', 'start_time', 'id')
+            ->orderBy('start_time')
+            ->get()
+            ->toArray();
+        return $ap;
+    }
+
+    public static function timeZoneTransfer($time='', $time_zone)
+    {
+        $carbon = new Carbon($time);
+        $carbon->setTimezone($time_zone);
+        return $carbon;
+    }
+
+    /**
+     * @param $time_zone
+     * @return array
+     */
+    public function getDays($time_zone): array
+    {
+        $carbon = new Carbon();
+        $carbon->setTimezone($time_zone);
+        $day = [];
+        foreach (range(0, 7) as $item) {
+            $day[] = $carbon->format('m-d');
+            $carbon->addDay();
+        }
+        return $day;
+    }
+
+    public function getWeekDays($time_zone): array
+    {
+        $carbon = new Carbon();
+        $carbon->setTimezone($time_zone);
+        $day = [];
+        foreach (range(0, 6) as $item) {
+            $day[] = $carbon->dayOfWeek;
+            $carbon->addDay();
+        }
+        return $day;
+    }
+
+    public function getToday($time_zone)
+    {
+        $carbon = new Carbon();
+        $carbon->setTimezone($time_zone);
+        return $carbon->format('Y-m-d');
     }
 }

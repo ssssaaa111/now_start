@@ -48,6 +48,15 @@ class User extends Authenticatable
         $this->files()->save($uploadingfile);
     }
 
+    public function owns($relation)
+    {
+        return $this->id == $relation->publisher_id;
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
     
 
 }

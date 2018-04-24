@@ -19,11 +19,12 @@ Route::get('/release', function () {
     return view('classes.release');
 });
 
-Route::get('/news', function () {
-    return view('classes.news');
-});
+Route::get('/news', "MyController@news");
 
 Route::get('/my', "MyController@index");
+
+Route::get('/appointments/{id}', "AppointmentController@show");
+Route::get('/appointment/{appointment}', "AppointmentController@update");
 
 Route::get('/posts/create', "PostsController@create");
 Route::get('/posts', "PostsController@index")->name('home');

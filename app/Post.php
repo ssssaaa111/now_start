@@ -64,5 +64,11 @@ class Post extends Model
         return $this->hasMany(Uploadingfile::class);
     }
 
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class, 'publisher_id', 'id');
+    }
+
+
 
 }
