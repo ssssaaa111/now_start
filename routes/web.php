@@ -1,5 +1,11 @@
 <?php
 
+//test event
+Route::get('/broadcast', function (){
+    event(new \App\Events\UserSignedUp("baizunhui"));
+});
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,14 +17,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('classes.index');
-});
+Route::get('/', "PostsController@welcome");
 
 Route::get('/release', function () {
     return view('classes.release');
 });
 
+Route::get('/return', "PayController@return");
+Route::get('/notify', "PayController@notify");
+
+
+
+
+Route::get('/test_pay/{appointment}', "PayController@index");
+Route::get('/test_pay_wx', "WeixinPayController@index");
 Route::get('/news', "MyController@news");
 
 Route::get('/my', "MyController@index");

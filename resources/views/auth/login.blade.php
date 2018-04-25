@@ -48,12 +48,16 @@
 
             <div class="social-auth-links text-center">
                 <p>- OR -</p>
-                <a href="login/github" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> Sign
+                <a href="login/github" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>
+                    Sign
                     in using
                     Github</a>
-                <a href="login/weixin" class="btn btn-block btn-social btn-wechat btn-flat"><i class="fa fa-wechat"></i> Sign
-                    in using
-                    WeChat</a>
+                @if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') == true)
+                    <a href="login/weixin" class="btn btn-block btn-social btn-wechat btn-flat"><i
+                                class="fa fa-wechat"></i> Sign
+                        in using
+                        WeChat</a>
+                @endif
             </div>
             <!-- /.social-auth-links -->
 

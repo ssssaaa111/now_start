@@ -18,7 +18,7 @@ class PostsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('auth')->except(['index', 'show','welcome']);
     }
 
     public function index()
@@ -40,7 +40,22 @@ class PostsController extends Controller
             }
         }
         $tzlist = DateTimeZone::listIdentifiers(DateTimeZone::ALL);
+
         return view('classes.release', compact('posts', 'inProgress', 'tzlist', 'tz', 'weekMap'));
+    }
+
+    public function welcome()
+    {
+        $posts = Post::inRandomOrder()
+            ->limit(3)
+            ->get();
+        foreach ($posts as &$post) {
+            if (!empty($post->ext)) {
+                $post->ext = json_decode($post->ext, true);
+            }
+        }
+
+        return view('classes.index', compact('posts'));
     }
 
     public function show(Post $post)

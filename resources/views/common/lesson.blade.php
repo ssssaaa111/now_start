@@ -16,7 +16,7 @@
         <div class="item-subtitle">
             <p class="font-6"><a><span class="iconfont icon-xueshimao-shi"></span><span
                             class="col-1ed margin-l2">语言</span></a><a><span class="margin-lr5">{{$post->subject}}</span></a><a><span
-                            class="col-chen">￥{{$post->ext['price']}}</span>每小时</a></p>
+                            class="col-chen">￥{{$post->price}}</span>每小时</a></p>
             <p class="font-6">{{$post->nation}}<span class="col-hui margin-r5">国家</span>1234<span
                         class="col-hui">学员</span></p>
         </div>

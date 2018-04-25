@@ -20,6 +20,8 @@ class CreatePostsTable extends Migration
             $table->string('subject');
             $table->string('nation');
             $table->text('body');
+            $table->float('price');
+            $table->string('self_url')->default("");
             $table->string('ext')->default('');
             $table->timestamps();
         });

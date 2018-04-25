@@ -32,12 +32,12 @@
                 </ul>
             </div>
 
-            <div class="star_student star_teacher">
-                <p class="line-h2"><span>—</span> 今日明星学生 <span>—</span></p>
-                <ul>
-                    @include('classes.star_teachers')
-                </ul>
-            </div>
+            {{--<div class="star_student star_teacher">--}}
+                {{--<p class="line-h2"><span>—</span> 今日明星学生 <span>—</span></p>--}}
+                {{--<ul>--}}
+                    {{--@include('classes.star_teachers')--}}
+                {{--</ul>--}}
+            {{--</div>--}}
 
             <div class="be_teacher">
                 <img src="images/be-teacher.png">
@@ -52,7 +52,9 @@
                                 class="iconfont icon-gengduo-tianchong"></span></p>
                     <div class="list-block media-list">
                         <ul>
-                            @include('classes.class_card')
+                            @foreach($posts as $post)
+                                @include('common.lesson')
+                            @endforeach
                         </ul>
                     </div>
                 </div>
