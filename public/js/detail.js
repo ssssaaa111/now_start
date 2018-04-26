@@ -27,8 +27,9 @@ $(function () {
                 onClick: function () {
                     var id = $even.attr('id');
                     id = id.replace("appointment_", "");
-                    var url = "/appointment/" + id;
-                    $.get(url, function (data) {
+                    var url = "/test_pay/" + id;
+                    location.href = url;
+                   /* $.get(url, function (data) {
                         if (data) {
                             $.toast("操作成功");
                         }
@@ -38,7 +39,7 @@ $(function () {
                         setTimeout(function () {
                             location.reload();
                         }, 2000);
-                    });
+                    });*/
 
                 }
             }

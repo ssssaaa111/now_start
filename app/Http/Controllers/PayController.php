@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Bill;
+use Mockery\Exception;
 use Yansongda\Pay\Pay;
 use Yansongda\Pay\Log;
 use App\Appointment;
 
+
 class PayController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     protected $config = [
         'app_id' => '2016082000295641',
         'notify_url' => 'http://yansongda.cn/notify.php',
@@ -24,13 +34,13 @@ class PayController extends Controller
 
     public function index(Appointment $appointment)
     {
+        $order_id = intval(auth()->id()) * 10 ** 6 + intval($appointment->id);
         $order = [
-            'out_trade_no' => bcrypt($appointment->id),
+            'out_trade_no' => $order_id,
             'total_amount' => $appointment->post->price,
             'subject' => $appointment->post->title,
         ];
         $alipay = Pay::alipay($this->config)->wap($order);
-
         return $alipay->send();// laravel 框架中请直接 `return $alipay`
 
         /*$order = [
@@ -45,7 +55,19 @@ class PayController extends Controller
 
     public function return()
     {
-        $data = Pay::alipay($this->config)->verify(); // 是的，验签就这么简单！
+        try {
+            $data = Pay::alipay($this->config)->verify(); // 是的，验签就这么简单！
+            $order_id = $data->out_trade_no;
+            Bill::findOrFail(['order_id'=>$order_id]);
+            $user_id = auth()->id();
+            $appointment_id = intval($order_id) - intval($user_id * 10 ** 6);
+
+
+        } catch (Exception $exception) {
+
+        }
+
+
         dd($data);
         // 订单号：$data->out_trade_no
         // 支付宝交易号：$data->trade_no
@@ -56,7 +78,7 @@ class PayController extends Controller
     {
         $alipay = Pay::alipay($this->config);
 
-        try{
+        try {
             $data = $alipay->verify(); // 是的，验签就这么简单！
 
             // 请自行对 trade_status 进行判断及其它逻辑进行判断，在支付宝的业务通知中，只有交易通知状态为 TRADE_SUCCESS 或 TRADE_FINISHED 时，支付宝才会认定为买家付款成功。
