@@ -57,7 +57,7 @@ class LoginController extends Controller
         );
         auth()->login($user);
         session()->flash("message", 'thanks for sign up');
-        return redirect('/posts');
+        return redirect()->intended('/posts');
     }
 
     private function findOrCreateGithubUser($github_user)
@@ -69,7 +69,7 @@ class LoginController extends Controller
             'name'=>$github_user->nickname,
             'avatar'=>$github_user->avatar,
             'email'=>$github_user->email,
-            'password'=>'123456',
+            'password'=>bcrypt(str_random(10)),
         ])->save();
         return $user;
         
@@ -83,7 +83,7 @@ class LoginController extends Controller
             'name'=>$wechat_user->nickname,
             'avatar'=>$wechat_user->avatar,
             'email'=>empty($wechat_user->email)?$wechat_user->id.str_random(10) : $wechat_user->email,
-            'password'=>'123456',
+            'password'=>bcrypt(str_random(10)),
         ])->save();
         return $user;
     }
@@ -106,6 +106,6 @@ class LoginController extends Controller
         );
         auth()->login($user);
         session()->flash("message", 'thanks for sign up');
-        return redirect('/posts');
+        return redirect()->intended('/posts');
     }
 }

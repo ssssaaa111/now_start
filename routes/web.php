@@ -18,10 +18,13 @@ Route::get('/broadcast', function (){
 */
 
 Route::get('/', "PostsController@welcome");
+Route::get('/search_teacher', "SearchController@teacher");
 
 Route::get('/release', function () {
     return view('classes.release');
 });
+
+
 
 Route::get('/return', "PayController@return");
 Route::get('/notify', "PayController@notify");

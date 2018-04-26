@@ -7,6 +7,7 @@ use Mockery\Exception;
 use Yansongda\Pay\Pay;
 use Yansongda\Pay\Log;
 use App\Appointment;
+use Illuminate\Support\Facades\DB;
 
 
 class PayController extends Controller
@@ -55,20 +56,41 @@ class PayController extends Controller
 
     public function return()
     {
+
         try {
             $data = Pay::alipay($this->config)->verify(); // 是的，验签就这么简单！
+            $price_of_bill = $data->total_amount;
             $order_id = $data->out_trade_no;
-            Bill::findOrFail(['order_id'=>$order_id]);
             $user_id = auth()->id();
             $appointment_id = intval($order_id) - intval($user_id * 10 ** 6);
+            $appointment = Appointment::findOrFail($appointment_id);
+            $publisher_id = $appointment->post->id;
+            $price = $appointment->post->price;
+            $bill = Bill::firstOrNew(['order_id' => $order_id]);
+            if ($bill->exits or $appointment->user_id != 0 or $price_of_bill != $price) {
+                session()->flash('bill-message', '您已经预定过该时段了哦~');
+                return redirect('/posts/' . $appointment_id);
+            }
 
+            DB::transaction(function ()
+            use ($bill, $appointment, $price, $appointment_id, $user_id, $publisher_id) {
+                $bill->fill([
+                    'user_id' => $user_id,
+                    'publisher_id' => $publisher_id,
+                    'price' => $price,
+                    'appointment_id' => $appointment_id
+                ])->save();
 
-        } catch (Exception $exception) {
-
+                $appointment->user_id = auth()->id();
+                $appointment->save();
+            }, 5);
+            session()->flash('bill-message', '恭喜您预约成功，请在消息箱查看您的预约时间和具体课程');
+            return redirect('/posts/' . $publisher_id);
+        } catch (\Yansongda\Pay\Exceptions\InvalidSignException $exception) {
+            session()->flash('bill-message', '预约失败，请重试！');
+            return redirect('/posts/');
         }
 
-
-        dd($data);
         // 订单号：$data->out_trade_no
         // 支付宝交易号：$data->trade_no
         // 订单总金额：$data->total_amount

@@ -54,6 +54,15 @@ class Post extends Model
             ->toArray();
     }
 
+    public static function country()
+    {
+        return static::select('nation')
+            ->limit(6)
+            ->groupBy('nation')
+            ->get()
+            ->toArray();
+    }
+
     public function tags()
     {
         return $this->belongsToMany(Tag::class);

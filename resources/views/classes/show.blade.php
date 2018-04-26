@@ -69,4 +69,9 @@
 @section('foot')
     <script src="/js/detail.js"></script>
     <script src="/js/release.js"></script>
+    @if($toast = session('bill-message'))
+        <script>
+            $.toast("{{$toast}}");
+        </script>
+    @endif
 @endsection

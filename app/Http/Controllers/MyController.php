@@ -19,9 +19,8 @@ class MyController extends Controller
 
     public function news()
     {
-        $appointments = auth()->user()->appointments;
+        $appointments = auth()->user()->appointments->sortByDesc('updated_at');
         //把开始时间切回本地时区
-
         foreach ($appointments as &$appointment) {
             $appointment->start_time = PostsController::timeZoneTransfer(
                 $appointment->start_time,

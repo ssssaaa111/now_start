@@ -1,5 +1,5 @@
 <li>
-    <a href="#search-tea">
+    <a href="/search_teacher">
         <img src="images/rele-01.png">
         <span class="font-75">搜老师</span>
     </a>
