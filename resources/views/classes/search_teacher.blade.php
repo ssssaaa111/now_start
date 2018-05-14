@@ -11,7 +11,7 @@
             <dis class="sele-ul buttons-tab">
                 <a href="#tab1" class="tab-link button">语种 <span class="icon icon-down"></span></a>
                 <a href="#tab2" class="tab-link button"> 国家<span class="icon icon-down"></span></a>
-                <a href="#tab3" class="tab-link button"> 价格<span class="icon icon-down"></span></a>
+                <a href="#tab3" class="tab-link button"> 价格q <span class="icon icon-down"></span></a>
                 <a href="#tab4" class="tab-link button">热度 <span class="icon icon-down "></span></a>
             </dis>
 

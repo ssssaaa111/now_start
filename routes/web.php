@@ -5,6 +5,8 @@ Route::get('/broadcast', function (){
     event(new \App\Events\UserSignedUp("baizunhui"));
 });
 
+Route::post('/teacher_registrate', "TeacherController@create");
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,7 @@ Route::get('/broadcast', function (){
 |
 */
 
+Route::get('/register_teacher', "TeacherController@index");
 Route::get('/', "PostsController@welcome");
 Route::get('/search_teacher', "SearchController@teacher");
 

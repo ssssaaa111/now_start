@@ -29,5 +29,13 @@ class AuthServiceProvider extends ServiceProvider
 //            return $user->id == $post->publisher_id;
             return $user->owns($post);
         });
+
+        Gate::define('can-comment', function ($user, $post){
+            return $user->can_comment($post);
+        } );
+
+        Gate::define('can-reply', function ($user, $post){
+            return $user->can_reply($post);
+        } );
     }
 }

@@ -73,3 +73,43 @@ var Rendering = function (date) {
     // }
 };
 */
+$(function () {
+    //评论 点赞。。。
+    $('.bar-pl').hide();
+    $('.menu').hide();
+    $(".comm-img").on("click", function (e) {
+        if ($('.menu').css('display') == 'none') {
+            $(".menu").show(1000);//.animate({width:'2rem'});
+        } else {
+            $(".menu").hide();
+        }
+        $(document).one("click", function () {
+            $(".menu").hide();
+        });
+
+        e.stopPropagation();
+    });
+    $(".menu").on("click", function (e) {
+        var menu = $(e.target);
+        e.stopPropagation();
+    });
+
+    //点赞
+    $('.icon-dianzan').on("click", function () {
+        $(".menu").hide();
+    });
+
+    //评论
+    $('.icon-yipinglun').on("click", function () {
+        $('.bar-pl').show();
+        $('.bar-inp').focus();
+        $(".menu").hide();
+    });
+
+    //发送
+    $('#for-xr').on('click', function () {
+        $('.bar-pl').hide();
+    });
+
+
+});

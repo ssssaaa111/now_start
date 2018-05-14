@@ -26,26 +26,45 @@ $factory->define(App\User::class, function (Faker $faker) {
 
 $factory->define(App\Appointment::class, function (Faker $faker) {
     $carbon = new Carbon\Carbon();
-    $carbon->addDays(random_int(0,7));
-    $carbon->addHours(random_int(0,23));
+    $carbon->addDays(random_int(0, 7));
+    $carbon->addHours(random_int(0, 23));
     return [
         //'publisher_id' => factory(App\User::class)->create()->id,
-        'publisher_id' => random_int(1,20),
+        'publisher_id' => random_int(1, 20),
         'start_time' => $carbon->format('Y-m-d H:i:s'), // secret
     ];
 });
 
 $factory->define(App\Post::class, function (Faker $faker) {
     $carbon = new Carbon\Carbon('24.04.2018 00:00');
-    $carbon->addDays(random_int(0,20));
-    $carbon->addHours(random_int(0,23));
+    $carbon->addDays(random_int(0, 20));
+    $carbon->addHours(random_int(0, 23));
     return [
-        'user_id'=>random_int(1,20),
-        'title'=>$faker->sentence,
-        'body'=>$faker->paragraph,
-        'subject'=>$faker->languageCode,
-        'nation'=>$faker->country,
-        'price'=>random_int(100,500)
+        'user_id' => random_int(1, 20),
+        'title' => $faker->sentence,
+        'body' => $faker->paragraph,
+        'subject' => $faker->languageCode,
+        'nation' => $faker->country,
+        'price' => random_int(100, 500)
+    ];
+});
+
+$factory->define(App\Comment::class, function (Faker $faker) {
+
+    return [
+        'user_id' => random_int(1, 30),
+        'post_id' => random_int(1, 20),
+        'body' => $faker->sentence,
+    ];
+});
+
+$factory->define(App\Reply::class, function (Faker $faker) {
+    $post_id = random_int(1, 20);
+    return [
+        'user_id' => random_int(1, 30),
+        'post_id' => $post_id,
+        'comment_id' => App\Post::find($post_id)->comments->pluck('id')->random(),
+        'body' => $faker->sentence,
     ];
 });
 

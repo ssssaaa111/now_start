@@ -68,6 +68,7 @@ class PostsController extends Controller
 //        if (Gate::denies('show-post', $post)) {
 //            abort('403', 'Sorry, not sorry');
 //        }
+
         $weekMap = [
             0 => '星期天',
             1 => '星期一',

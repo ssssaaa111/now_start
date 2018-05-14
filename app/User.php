@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'github_id', 'avatar','weixin_id'
+        'name', 'email', 'password', 'github_id', 'avatar', 'weixin_id'
     ];
 
     /**
@@ -32,7 +32,18 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
 
     }
-    
+
+    public function teachers()
+    {
+        return $this->hasOne(Teacher::class);
+    }
+
+    public function teacher_register(Teacher $teacher)
+    {
+
+        $this->teachers()->save($teacher);
+    }
+
     public function publish(Post $post)
     {
         $this->posts()->save($post);
@@ -50,13 +61,31 @@ class User extends Authenticatable
 
     public function owns($relation)
     {
-        return $this->id == $relation->publisher_id;
+        return $this->id == $relation->user_id;
     }
 
     public function appointments()
     {
         return $this->hasMany(Appointment::class);
     }
-    
+
+    public function can_comment($post)
+    {
+        try{
+
+                $res=  $this->appointments()->where(['publisher_id' => $post->id])->get()->toArray();
+                return empty($res)?false:true;
+        }
+        catch (\Exception $exception){
+            return false;
+        }
+    }
+
+    public function can_reply($post)
+    {
+        return $this->owns($post) || $this->can_comment($post);
+    }
+
+
 
 }

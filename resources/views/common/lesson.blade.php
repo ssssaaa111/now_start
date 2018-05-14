@@ -1,7 +1,12 @@
 <li class="item-content">
-    <div class="item-media">
+  {{--  <div class="item-media">
         <a class="external" href="/posts/{{$post->id}}">
             课程
+        </a>
+    </div>--}}
+    <div class="item-media">
+        <a>
+            <img src="{{$post->user->avatar}}">
         </a>
     </div>
     <div class="item-inner">
@@ -20,5 +25,10 @@
             <p class="font-6">{{$post->nation}}<span class="col-hui margin-r5">国家</span>1234<span
                         class="col-hui">学员</span></p>
         </div>
+    </div>
+
+    <div class="conte-xr">
+        <a class="iconfont icon-icon--"></a>
+        <a href="/posts/{{$post->id}}" class="external padd-5">预定</a>
     </div>
 </li>

@@ -7,7 +7,7 @@
         <header>
             <p class="padding-lr75"><span class="fl iconfont icon-biao"></span>发布<a href="javascript:;"
                                                                                     data-modal="modal-1"
-                                                                                    class="md-trigger iconfont icon-bianjiedit26 fr"></a>
+                                                                                    class="md-trigger iconfont fr"></a>
             </p>
             <div class="buttons-tab">
                 <a href="#tab1" class="tab-link active button"><span>全部</span></a>
@@ -270,7 +270,7 @@
                 <select id="select_id">
                     @foreach($tzlist as $item)
                         <option value="{{$item}}">{{$item}}</option>
-                        @endforeach
+                    @endforeach
                 </select>
                 <div class="time-list">
                     <ul id="monitor">
@@ -366,7 +366,7 @@
     <link rel="stylesheet" href="css/search.css">
     <link rel="stylesheet" href="css/release.css">
     <link href="css/component.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://at.alicdn.com/t/font_618936_mpzc1sbdm1xxbt9.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_618936_tbj11ywg8l8wu3di.css">
 @endsection
 
 @section('foot')

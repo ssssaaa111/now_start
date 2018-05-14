@@ -13,10 +13,12 @@
                         <img src="{{$post->user->avatar ?? '/images/index-teacher.png'}}">
                     </div>
                     <ul>
-                        <li><span class="iconfont icon-wode "></span><span class="fr">{{$post->user->name}}</span></li>
-                        <li><span class="iconfont icon-diqiu "></span><span class="fr">{{$post->nation}}</span></li>
-                        <li><span class="iconfont icon-maozi "></span><span class="fr">{{$post->subject}}</span></li>
-                        <li><span class="iconfont icon-shu "></span><span class="fr">{{$post->subject}}</span></li>
+                        <li><span class="iconfont icon-wode "></span><span class="fr tea">{{$post->user->name}}</span>
+                        </li>
+                        <li><span class="iconfont icon-diqiu "></span><span class="fr tea">{{$post->nation}}</span></li>
+                        <li><span class="iconfont icon-maozi "></span><span class="fr tea">{{$post->subject}}</span>
+                        </li>
+                        <li><span class="iconfont icon-shu "></span><span class="fr tea">{{$post->subject}}</span></li>
                     </ul>
                 </div>
                 <div class="det-js">
@@ -30,22 +32,47 @@
                 </div>
             </div>
 
-            <div class="det-tab">
+            <div class="det-tab" id="test">
                 <div class="buttons-tab">
                     <a href="#tab1" class="tab-link active button">课时表</a>
+
                     <a href="#tab3" class="tab-link button">学生评价</a>
                 </div>
                 <div class="content-block">
                     <div class="tabs">
                         <div id="tab1" class="tab active">
+
                             <div class="content-block">
-                               @include('common.calendar')
+                                @include('common.calendar')
                             </div>
                         </div>
+
                         <div id="tab3" class="tab ">
+                            @can('can-comment', $post)
+                                <div class="card">
+                                    <div class="card-block">
+                                        <form method="POST" action="/posts/{{$post->id}}/comments">
+                                            {{csrf_field()}}
+                                            <div class="form-group">
+                                                <textarea rows="3" placeholder="发表评论.." name="body"
+                                                          style="padding:.5rem;width: 85%;height:3rem;border-top-left-radius: 5px;
+                                                          border-bottom-left-radius: 5px;margin: .5rem 0 0 5%;border: 1px solid #eee;
+                                                           box-shadow: 1px 1px 1px #eee;">
+                                                </textarea>
+                                                <button type="submit" class="fr" style="color:#fff;text-align:center;width: 10%;margin-top: .5rem;height: 3rem;background: #1ED2AD;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">发送</button>
+                                            </div>
+
+                                            <div class="form-group">
+
+                                            </div>
+                                        </form>
+                                        @include('layouts.errors')
+                                    </div>
+                                </div>
+                            @endcan
                             <div class="content-block">
                                 <ul>
-                                   @include('common.comment')
+                                    @include('common.comment')
                                 </ul>
                             </div>
                         </div>
@@ -58,6 +85,11 @@
 
         @include('common.nav')
 
+        <nav class="bar bar-tab bar-pl">
+            <input type="text" class="bar-inp">
+            <a id="for-xr">发送</a>
+        </nav>
+
     </div>
 @endsection
 
@@ -69,6 +101,7 @@
 @section('foot')
     <script src="/js/detail.js"></script>
     <script src="/js/release.js"></script>
+
     @if($toast = session('bill-message'))
         <script>
             $.toast("{{$toast}}");

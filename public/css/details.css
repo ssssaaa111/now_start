@@ -267,3 +267,87 @@
 .page-details .actions-modal-button.color-danger, .actions-modal-label.color-danger{
     color: #1ED2AD;
 }
+
+
+.content-block li .dynam-body .comment-al .comm-img{
+    display: inline-block;
+    height: .5rem;
+    width: 1rem;
+    float: right;
+    vertical-align: middle;
+    margin-top: .25rem;
+}
+.content-block li .dynam-body .comment-al {
+    position: relative;
+}
+.content-block li .dynam-body .comment-al .menu{
+    position: absolute;
+    width: 8rem;
+    height: 1.5rem;
+    right: 1rem;
+    background: #a8abb0;
+    top: -.25rem;
+    font-size: 0;
+}
+.content-block li .dynam-body .comment-al .menu .iconfont{
+    width: 50%;
+    color: #F7F7F7;
+    display: inline-block;
+    font-size: .7rem;
+    line-height: 1.5rem;
+    text-align: center;
+}
+.content-block li .dynam-body .comment-al .menu .iconfont:before{
+    margin-right: .1rem;
+}
+@media (max-height: 400px) {
+    .det-nav{
+        display: none;
+    }
+}
+.page .bar-pl{
+    height: 2.5rem;
+
+}
+.bar-pl .bar-inp{
+    display: inline-block;
+    width: 100%;
+    margin-right: -3rem;
+    padding-right: 3rem;
+    padding-left: 1rem;
+    margin-bottom: .5rem;
+    height: 2rem;
+
+    border-bottom: 1px solid #1ED2AD;
+}
+.bar-pl a{
+    display: inline-block;
+    width: 2rem;
+    text-align: center;
+    color: #F7F7F7;
+    background: #1ED2AD;
+    border-radius: 5px;
+}
+.content-block li .dynam-body .comment-al .box-pl{
+    background: #ddd;
+    padding: .3rem;
+    position: relative;
+}
+.col-3f5{
+    color: #3F51B5;
+}
+.content-block li .dynam-body .comment-al .box-pl:after{
+    content: '';
+    position: absolute;
+    left: 1rem;
+    top: -.5rem;
+    border-left: .5rem solid transparent;
+    border-right: .5rem  solid transparent;
+    border-bottom: .5rem solid #ddd;
+}
+
+.tea{
+    white-space: nowrap;
+    display: inline-block;
+    width: 80%;
+}

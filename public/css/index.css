@@ -123,6 +123,7 @@
 .star_teacher ul li span{
     font-size: .7rem;
     color: #fff;
+    white-space: nowrap;
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -142,7 +143,6 @@
 }
 .page-index .latest_release .list-block.media-list .item-media{
     margin-bottom: 2.5rem;
-    background: #1ed2ad;
     color: #fff;
     padding: 1px 5px;
     border-top-right-radius: 10px;
@@ -212,7 +212,6 @@
 }
 .page-index .latest_release .list-block.media-list .item-media{
     margin-bottom: 2.5rem;
-    background: #1ed2ad;
     color: #fff;
     padding: 1px 5px;
     border-top-right-radius: 10px;
@@ -311,3 +310,67 @@
     border-radius: .9rem;
     float: right;
 }
+
+
+/*新增*/
+.list-block .item-content{
+    position: relative;
+    overflow: hidden;
+}
+.latest_release .list-block.media-list .item-media{
+    background: 0;
+    color: #fff;
+    padding: 1px 5px;
+    /* border-top-right-radius: 10px; */
+    /* border-bottom-right-radius: 10px; */
+    /* font-size: .6rem; */
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 1.2rem;
+    /* border-radius: 5px; */
+    /* overflow: hidden; */
+}
+.latest_release .list-block.media-list .item-media a{
+    height: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.list-block .item-content .conte-xr{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 2rem;
+    height: 100%;
+    background: #1ED2AD;
+    color: #fff;
+}
+.list-block .item-content .conte-xr a{
+    font-size: .7rem;
+    color: #fff;
+}
+.list-block .item-content .conte-xr .icon-icon--{
+    width: 100%;
+    font-size: 1rem;
+    text-align: center;
+    padding-left: .5rem;
+    padding-top: .3rem;
+    border-bottom: 1px solid #fff;
+}
+.list-block .item-content .conte-xr .padd-5{
+    padding: .5rem;
+    text-align: center;
+    line-height: .7rem;
+}
+/*什么都没有*/
+.padd-5rm{
+    padding: 1rem;
+    text-align: center;
+    font-size: 1rem;
+
+}
+.padd-5rm .font-2rem{
+    font-size: 2rem;
+}
+
+

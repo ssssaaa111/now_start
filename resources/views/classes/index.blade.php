@@ -3,7 +3,7 @@
 @section('content')
     <div id="index" class="page page-index page-current">
         <header>
-            <img src="images/index-logo.png" class="logo">
+            <img src="images/logo.png" class="logo">
             @guest
                 <div class="fr text-cen">
                     <a href="login" class="external" style="display: block">
@@ -43,7 +43,7 @@
                 <img src="images/be-teacher.png">
                 <p class="font-7b">成为一名西语老师</p>
                 <p class="font-6">拥有稳定的客户群，运用您的知识赚钱。注册并开始您的教书生涯方便且简单</p>
-                <a>成为一名老师</a>
+                <a class="external" href="/register_teacher">成为一名老师</a>
             </div>
 
             <div class="latest_release">
@@ -66,8 +66,10 @@
 
 @section('head')
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_618936_mpzc1sbdm1xxbt9.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_618936_tbj11ywg8l8wu3di.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/search.css">
+
 @endsection
 
 @section('foot')
