@@ -14,5 +14,13 @@ class Teacher extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class, 'publisher_id', 'id');
+    }
 
+    public function publish(Appointment $appointment)
+    {
+        return $this->appointments()->save($appointment);
+    }
 }

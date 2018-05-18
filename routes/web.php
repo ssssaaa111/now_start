@@ -27,6 +27,10 @@ Route::get('/release', function () {
     return view('classes.release');
 });
 
+Route::get('/tests', function () {
+    return view('test');
+});
+
 
 
 Route::get('/return', "PayController@return");
@@ -41,7 +45,9 @@ Route::get('/news', "MyController@news");
 
 Route::get('/my', "MyController@index");
 
-Route::get('/appointments/{id}', "AppointmentController@show");
+//Route::get('/appointments/{id}', "AppointmentController@show");
+Route::get('/appointments', "AppointmentController@show");
+Route::post('/appointments', "AppointmentController@create");
 Route::get('/appointment/{appointment}', "AppointmentController@update");
 
 Route::get('/posts/create', "PostsController@create");

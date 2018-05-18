@@ -5,9 +5,16 @@
 
     <div class="page page-current page-release">
         <header>
-            <p class="padding-lr75"><span class="fl iconfont icon-biao"></span>发布<a href="javascript:;"
-                                                                                    data-modal="modal-1"
-                                                                                    class="md-trigger iconfont fr"></a>
+            <p class="padding-lr75">
+
+                @can("is_registed")
+                    <a href="/appointments" class="fl iconfont icon-biao"></a>发布
+                    <a href="/posts/create"
+                       data-modal="modal-1"
+                       class="md-trigger iconfont icon-bianjiedit26 fr"></a>
+                    @else
+                    发布
+                @endcan
             </p>
             <div class="buttons-tab">
                 <a href="#tab1" class="tab-link active button"><span>全部</span></a>

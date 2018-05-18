@@ -37,5 +37,16 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('can-reply', function ($user, $post){
             return $user->can_reply($post);
         } );
+
+        Gate::define('is_registed', function ($user){
+            try{
+                $user->teachers()->firstOrFail();
+                return true;
+            }
+            catch (\Exception $exception){
+                return false;
+            }
+
+        } );
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Appointment;
 use Gate;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 /**
@@ -32,11 +33,26 @@ class AppointmentController extends Controller
      * Show the form for creating a new resource.
      *
      * @param Request $request
-     * @return void
+     * @return bool
      */
     public function create(Request $request)
     {
+        $time_zone = PostsController::getUserTimeZone();
+        $carbon = new Carbon($request->start_time, $time_zone);
+        $carbon = $carbon->setTimezone("UTC");
+        try {
+            $teacher = auth()->user()->teachers()->firstOrFail();
+            $res = $teacher->publish(
+                new Appointment([
+                    'publisher_id' => $teacher->id,
+                    'start_time' => $carbon->format('Y-m-d H:i:s'),
+                ]));
+        } catch (\Exception $exception) {
+            dd(111);
+        }
 
+
+        return redirect('posts');
     }
 
     /**
@@ -65,16 +81,17 @@ class AppointmentController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        auth()->loginUsingId(1);
+        //auth()->loginUsingId(1);
 
-        $appointments = Appointment::findOrFail($id);
-
+        // $appointments = Appointment::findOrFail($id);
         //E1
-        /*if (Gate::denies('update-post', $appoints)) {
+        if (Gate::denies('is_registed')) {
             abort(403, "sorry, bad request???");
-        }*/
+        }
+
+        $time_zone = PostsController::getUserTimeZone();
 
         //E2
         //$this->authorize('update-post', $appoints);
@@ -88,7 +105,7 @@ class AppointmentController extends Controller
             dd($appointments);
         }*/
 
-        return view('test', compact('appointments'));
+        return view('add_appointment_by_teacher', compact('time_zone'));
 
     }
 
@@ -115,7 +132,7 @@ class AppointmentController extends Controller
             $appointment->user_id = auth()->id();
             $response = $appointment->save();
             return response()->json($response);
-        }else{
+        } else {
             return response()->json(false);
         }
     }

@@ -3,7 +3,7 @@
 @section('content')
     <div class="page page-current page-details">
         <header>
-            <p><a class="icon icon-left "></a> <a class="fr iconfont icon-email"></a></p>
+            <p><a href="javascript:history.back()" class="icon icon-left "></a> <a class="fr iconfont icon-email"></a></p>
         </header>
 
         <div class="content native-scroll" style="top: 2.5rem;bottom: 2.5rem;">

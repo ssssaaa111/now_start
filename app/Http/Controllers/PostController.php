@@ -24,7 +24,7 @@ class PostsController extends Controller
     public function index()
     {
         $user = auth()->id();
-        $tz = $this->getUserTimeZone();
+        $tz = static::getUserTimeZone();
         $inProgressIds = Redis::zrevrange("user.{$user}.inProgress", 0, 2);
 
         $inProgress = collect($inProgressIds)->map(function ($id) {
@@ -78,7 +78,7 @@ class PostsController extends Controller
             5 => '星期五',
             6 => '星期六',
         ];
-        $time_zone = $this->getUserTimeZone();
+        $time_zone = static::getUserTimeZone();
         $test = $this->getAppointmentsTable($post);
         $present_data = array();
         foreach ($test as $a){
@@ -162,7 +162,7 @@ class PostsController extends Controller
     /**
      * @return DateTimeZone|string
      */
-    public function getUserTimeZone()
+    public static function getUserTimeZone()
     {
         $ip = $_SERVER['REMOTE_ADDR']; // means we got user's IP address
         $json = file_get_contents('http://ip-api.com/json/' . $ip); // this one service we gonna use to obtain timezone by IP
