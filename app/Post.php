@@ -37,7 +37,6 @@ class Post extends Model
         }
 
         return $posts;
-
     }
 
     public function user()
@@ -78,6 +77,9 @@ class Post extends Model
         return $this->hasMany(Appointment::class, 'publisher_id', 'id');
     }
 
-
+    public static function getByBody($body)
+    {
+        return static::where('body', 'like', "%$body%")->get();
+    }
 
 }

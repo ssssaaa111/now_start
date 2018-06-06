@@ -7,6 +7,13 @@ Route::get('/broadcast', function (){
 
 Route::post('/teacher_registrate', "TeacherController@create");
 
+Route::group(['prefix' => 'messages'], function () {
+    Route::get('/', ['as' => 'messages', 'uses' => 'MessagesController@index']);
+    Route::get('create/{id}', ['as' => 'messages.create', 'uses' => 'MessagesController@create']);
+    Route::post('/{id}', ['as' => 'messages.store', 'uses' => 'MessagesController@store']);
+    Route::get('{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show']);
+    Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -21,16 +28,43 @@ Route::post('/teacher_registrate', "TeacherController@create");
 
 Route::get('/register_teacher', "TeacherController@index");
 Route::get('/', "PostsController@welcome");
-Route::get('/search_teacher', "SearchController@teacher");
+Route::get('/search_teacher', "SearchController@index");
+Route::post('/search_teacher', "SearchController@store");
 
 Route::get('/release', function () {
     return view('classes.release');
 });
 
-Route::get('/tests', function () {
+Route::get('/image_upload_test', function () {
     return view('test');
 });
 
+Route::get('/tests', function () {
+    flash('Message 1');
+    flash('Message 2')->important();
+    flash('Welcome Aboard!')->success();
+    flash()->overlay('You are now a Laracasts member!', 'Yay');
+    return view('flush_test');
+});
+
+Route::get('/zoom', function () {
+    $test = new App\ZoomAPI();
+    $res = $test->createAUser();
+    dd($res);
+    return view('test');
+});
+
+Route::get('/edit', function () {
+    return view('welcome');
+});
+
+Route::post('/edit', function (\Illuminate\Http\Request $request) {
+    $content = $request['content'];
+    $id = auth()->id();
+    Cache::forget('teaching_mat'.$id);
+    Cache::forever('teaching_mat'.$id, $content);
+    return view('teacher.output',compact('content'));
+});
 
 
 Route::get('/return', "PayController@return");

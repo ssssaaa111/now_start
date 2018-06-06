@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Cmgmyr\Messenger\Models\Thread;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -48,5 +50,17 @@ class AuthServiceProvider extends ServiceProvider
             }
 
         } );
+
+        Gate::define('is_chatted_before', function ($user, $teacher_id){
+            try{
+                Thread::between(array($user->id, $teacher_id))->firstOrFail();
+                return true;
+            }
+            catch (ModelNotFoundException $exception){
+                return false;
+            }
+
+        } );
+
     }
 }

@@ -3,7 +3,16 @@
 @section('content')
     <div class="page page-current page-details">
         <header>
-            <p><a href="javascript:history.back()" class="icon icon-left "></a> <a class="fr iconfont icon-email"></a></p>
+            <p><a href="javascript:history.back()" class="icon icon-left "></a> <a
+                        @if(auth()->check())
+                        @can("is_chatted_before", $post->user_id)
+                        href="/messages/{{ \Cmgmyr\Messenger\Models\Thread::between([auth()->id(), $post->user_id])->first()->id}} "
+                        @else
+                        href="/messages/create/{{$post->user_id}}"
+                        @endcan
+                        @endif
+                        class="fr iconfont icon-email"></a></p>
+
         </header>
 
         <div class="content native-scroll" style="top: 2.5rem;bottom: 2.5rem;">
@@ -13,22 +22,27 @@
                         <img src="{{$post->user->avatar ?? '/images/index-teacher.png'}}">
                     </div>
                     <ul>
-                        <li><span class="iconfont icon-wode "></span><span class="fr tea">{{$post->user->name}}</span>
+                        <li><span class="iconfont icon-wode "></span><span class="fr tea">{{$post->user->teachers->name}}</span>
                         </li>
-                        <li><span class="iconfont icon-diqiu "></span><span class="fr tea">{{$post->nation}}</span></li>
-                        <li><span class="iconfont icon-maozi "></span><span class="fr tea">{{$post->subject}}</span>
+                        <li><span class="iconfont icon-diqiu "></span><span class="fr tea">{{$post->user->teachers->country}}</span></li>
+                        <li><span class="iconfont icon-maozi "></span><span class="fr tea">{{$post->user->teachers->university}}/{{$post->user->teachers->degree}}</span>
                         </li>
-                        <li><span class="iconfont icon-shu "></span><span class="fr tea">{{$post->subject}}</span></li>
+                        <li><span class="iconfont icon-shu "></span><span class="fr tea">{{$post->user->teachers->language}} level:{{$post->user->teachers->lang_level}} ${{$post->user->teachers->hourly_rate}}/hour</span></li>
                     </ul>
                 </div>
                 <div class="det-js">
                     <h5>自我介绍</h5>
                     <div class="det-text">
-                        <p>{{$post->body}}</p>
+                        <p>{{$post->user->teachers->description}}</p>
                     </div>
                     <iframe width="560" height="315"
                             src="https://www.youtube.com/embed/YUbno3rGZz0?rel=0&amp;showinfo=0" frameborder="0"
                             allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+                    <h5>教学计划</h5>
+                    <div class="det-text">
+                        <p>{!! $post->body !!}</p>
+                    </div>
                 </div>
             </div>
 
@@ -59,7 +73,10 @@
                                                           border-bottom-left-radius: 5px;margin: .5rem 0 0 5%;border: 1px solid #eee;
                                                            box-shadow: 1px 1px 1px #eee;">
                                                 </textarea>
-                                                <button type="submit" class="fr" style="color:#fff;text-align:center;width: 10%;margin-top: .5rem;height: 3rem;background: #1ED2AD;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">发送</button>
+                                                <button type="submit" class="fr"
+                                                        style="color:#fff;text-align:center;width: 10%;margin-top: .5rem;height: 3rem;background: #1ED2AD;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
+                                                    发送
+                                                </button>
                                             </div>
 
                                             <div class="form-group">
@@ -81,7 +98,9 @@
                 </div>
             </div>
 
+
         </div>
+
 
         @include('common.nav')
 

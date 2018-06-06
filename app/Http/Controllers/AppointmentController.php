@@ -44,7 +44,6 @@ class AppointmentController extends Controller
             $teacher = auth()->user()->teachers()->firstOrFail();
             $res = $teacher->publish(
                 new Appointment([
-                    'publisher_id' => $teacher->id,
                     'start_time' => $carbon->format('Y-m-d H:i:s'),
                 ]));
         } catch (\Exception $exception) {

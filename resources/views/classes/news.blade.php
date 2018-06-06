@@ -8,11 +8,17 @@
 
         <div class="content native-scroll" style="top: 2rem">
             <div class="new-lo">
-                <a style="display: block">
+                <a class="external" href="/messages" style="display: block">
                     <div class="new-img"><span class="iconfont icon-xiaoxi2"></span></div>
                     <div class="new-inte">
                         <p>私信</p>
-                        <p class="font-6">还没有收到私信</p>
+                        <?php $count = Auth::user()->newThreadsCount(); ?>
+                        @if($count > 0)
+                            <p class="font-6">你有{{ $count }}条私信</p>
+                            @else
+                            {{--<p class="font-6">私信列表</p>--}}
+                        @endif
+
                     </div>
                     <span class="icon icon-right"></span>
                 </a>

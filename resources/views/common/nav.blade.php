@@ -10,7 +10,12 @@
     <a class="tab-item external" href="/news">
         <span class="icon icon-xiaoxi iconfont"></span>
         <span class="tab-label">消息</span>
-        <span class="badge">2</span>
+        @if(auth()->check())
+            <?php $count = Auth::user()->newThreadsCount(); ?>
+            @if($count > 0)
+                    <span class="badge">{{ $count }}</span>
+            @endif
+        @endif
     </a>
     <a class="tab-item external " href="/my">
         <span class="icon icon-wode iconfont"></span>

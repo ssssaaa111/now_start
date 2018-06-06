@@ -68,7 +68,7 @@ class PostsController extends Controller
 //        if (Gate::denies('show-post', $post)) {
 //            abort('403', 'Sorry, not sorry');
 //        }
-
+       $content = \Cache::get('teaching_mat'.$post->user_id);
         $weekMap = [
             0 => '星期天',
             1 => '星期一',
@@ -99,10 +99,18 @@ class PostsController extends Controller
         $user = $post->user->id;
         Redis::zadd("user.{$user}.inProgress", time(), $post->id);
         $files = $post->files;
-        return view('classes.show', compact('post', 'files', 'present_data', 'weekMap', 'day','weekDay', 'time_zone','today'));
+        return view('classes.show', compact('post', 'files', 'present_data', 'weekMap', 'day','weekDay', 'time_zone','today','content'));
     }
 
+    public function edit(Request $request)
+    {
+        $content = $request['content'];
+        $id = auth()->id();
+        \Cache::forget('teaching_mat'.$id);
+        \Cache::forever('teaching_mat'.$id, $content);
+        return view('teacher.output',compact('content'));
 
+    }
 
 
     public function create()
@@ -111,16 +119,21 @@ class PostsController extends Controller
 
     }
 
-    public function store()
+    public function store(Request $request)
     {
+
         $this->validate(request(), [
-            'title' => 'required',
             'body' => 'required',
         ]);
-        session()->flash('message', 'your post has been published');
-        auth()->user()->publish(
-            new Post(request(['title', 'body']))
-        );
+        $teacher = Post::firstOrNew(['user_id'=>auth()->id()]);
+        $teacher->fill(
+            $request->all()
+        )->save();
+        flash('your post has been published')->success();
+
+        /*auth()->user()->publish(
+            new Post(request(['body']))
+        );*/
         return redirect('posts');
     }
 
@@ -186,7 +199,7 @@ class PostsController extends Controller
         $start_time = $carbon->format('Y-m-d') . ' 00:00:00';
         $end_time = $carbon->addDays(7)->format('Y-m-d') . ' 00:00:00';
 
-        $ap = Appointment::where('publisher_id', $post->id)
+        $ap = Appointment::where('publisher_id', $post->user_id)
             ->where('start_time', '>=', $start_time)
             ->where('start_time', '<', $end_time)
             ->select('user_id', 'start_time', 'id')
